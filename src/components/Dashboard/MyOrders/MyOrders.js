@@ -15,7 +15,7 @@ const MyOrders = () => {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    const url = `http://localhost:5000/order?email=${user.email}`;
+    const url = `https://dry-thicket-62738.herokuapp.com/order?email=${user.email}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => setOrders(data));
@@ -23,7 +23,7 @@ const MyOrders = () => {
   const handleDelete = (id) => {
     const proceed = window.confirm("Are you sure? You want to Delete?");
     if (proceed) {
-      const url = `http://localhost:5000/order/${id}`;
+      const url = `https://dry-thicket-62738.herokuapp.com/order/${id}`;
       fetch(url, {
         method: "DELETE",
       })

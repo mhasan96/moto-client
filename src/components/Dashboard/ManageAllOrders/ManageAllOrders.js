@@ -14,7 +14,7 @@ const ManageAllOrders = () => {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    const url = "http://localhost:5000/order";
+    const url = "https://dry-thicket-62738.herokuapp.com/order";
     fetch(url)
       .then((res) => res.json())
       .then((data) => setOrders(data));

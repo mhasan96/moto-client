@@ -47,13 +47,13 @@ const ManageUserOrders = () => {
   let { id } = useParams();
 
   useEffect(() => {
-    fetch(`http://localhost:5000/order?email=${user.email}`)
+    fetch(`https://dry-thicket-62738.herokuapp.com/order?email=${user.email}`)
       .then((res) => res.json())
       .then((data) => setOrders(data));
   }, []);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/services/${id}`)
+    fetch(`https://dry-thicket-62738.herokuapp.com/services/${id}`)
       .then((res) => res.json())
       .then((data) => setSingleOrder(data));
   }, []);

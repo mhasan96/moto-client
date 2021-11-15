@@ -7,12 +7,14 @@ const AddNewService = () => {
   const { register, handleSubmit, reset } = useForm();
   const onSubmit = (data) => {
     console.log(data);
-    axios.post("http://localhost:5000/services", data).then((res) => {
-      if (res.data.insertedId) {
-        alert("New Services Added Successfully");
-        reset();
-      }
-    });
+    axios
+      .post("https://dry-thicket-62738.herokuapp.com/services", data)
+      .then((res) => {
+        if (res.data.insertedId) {
+          alert("New Services Added Successfully");
+          reset();
+        }
+      });
   };
   return (
     <div className="add-service">

@@ -27,7 +27,7 @@ const SingleService = () => {
   const { user } = useAuth();
   const onSubmit = (data) => {
     console.log(data);
-    fetch("http://localhost:5000/order", {
+    fetch("https://dry-thicket-62738.herokuapp.com/order", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -48,7 +48,7 @@ const SingleService = () => {
 
   //loading Data
   useEffect(() => {
-    fetch(`http://localhost:5000/services/${id}`)
+    fetch(`https://dry-thicket-62738.herokuapp.com/services/${id}`)
       .then((res) => res.json())
       .then((data) => setServiceDetails(data));
   }, []);

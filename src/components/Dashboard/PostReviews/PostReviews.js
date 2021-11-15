@@ -7,12 +7,14 @@ const PostReviews = () => {
   const { register, handleSubmit, reset } = useForm();
   const onSubmit = (data) => {
     console.log(data);
-    axios.post("http://localhost:5000/reviews", data).then((res) => {
-      if (res.data.insertedId) {
-        alert("Thank You for your Feedback");
-        reset();
-      }
-    });
+    axios
+      .post("https://dry-thicket-62738.herokuapp.com/reviews", data)
+      .then((res) => {
+        if (res.data.insertedId) {
+          alert("Thank You for your Feedback");
+          reset();
+        }
+      });
   };
   return (
     <div className="add-service">

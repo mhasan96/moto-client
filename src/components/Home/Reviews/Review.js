@@ -20,8 +20,8 @@ const Review = ({ review }) => {
               <Rating
                 readonly
                 initialRating={ratings}
-                emptySymbol="far fa-star"
-                fullSymbol="fas fa-star"
+                emptySymbol="far fa-star text-yellow-400"
+                fullSymbol="fas fa-star text-yellow-400"
               ></Rating>
               {Rating}
             </Card.Text>

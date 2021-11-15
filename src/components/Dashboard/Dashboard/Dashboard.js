@@ -5,28 +5,33 @@ import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
 import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
+import { Nav } from "react-bootstrap";
 import IconButton from "@mui/material/IconButton";
-// import InboxIcon from "@mui/icons-material/MoveToInbox";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
-import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-// import MailIcon from "@mui/icons-material/Mail";
-// import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { Button, Grid } from "@mui/material";
 import { Link } from "react-router-dom";
 import { Switch, Route, useRouteMatch } from "react-router-dom";
-import useAuth from "../../Hooks/useAuth";
-import AdminRoute from "../../AdminRoute/AdminRoute";
 import MakeAdmin from "../MakeAdmin/MakeAdmin";
+import useAuth from "../../Hooks/useAuth";
+import Sidebar from "../Sidebar/Sidebar";
+import AddNewProducts from "./AddNewProducts/AddNewProducts";
+import AdminRoute from "../../AdminRoute/AdminRoute";
+import ManageProducts from "../ManageProducts/ManageProducts";
+import PostReviews from "../PostReviews/PostReviews";
+import MyOrders from "../MyOrders/MyOrders";
+import ManageAllOrders from "../ManageAllOrders/ManageAllOrders";
 
 const drawerWidth = 200;
 
 function Dashboard(props) {
   const { window } = props;
+  const { admin, logout, user } = useAuth();
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  let { path, url } = useRouteMatch();
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -36,17 +41,46 @@ function Dashboard(props) {
     <div>
       <Toolbar />
       <Divider />
+      <Link to="/appointment">
+        <Button color="inherit">Appointment</Button>
+      </Link>
+      <Link to={`${url}`}>
+        <Button color="inherit">Dashboard</Button>
+      </Link>
+      <Link to={`${url}/postReview`}>
+        <Button color="inherit">Post Review</Button>
+      </Link>
+      <Link to={`${url}/myOrders`}>
+        <Button color="inherit">My Orders</Button>
+      </Link>
+      <br />
+      {user.email && (
+        <Nav.Link className="text-black " onClick={logout}>
+          Logout
+        </Nav.Link>
+      )}
+      {admin && (
+        <Box>
+          <Link to={`${url}/makeAdmin`}>
+            <Button color="inherit">Make Admin</Button>
+          </Link>
+          <Link to={`${url}/addNewProducts`}>
+            <Button color="inherit">Create Products</Button>
+          </Link>
+          <Link to={`${url}/manageOrders`}>
+            <Button color="inherit">Manage Products</Button>
+          </Link>
+          <Link to={`${url}/manageAllOrders`}>
+            <Button color="inherit">Manage All Orders</Button>
+          </Link>
+        </Box>
+      )}
       <List>
         {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
           <ListItem button key={text}>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
-          <ListItem button key={text}>
+            {/* <ListItemIcon>
+              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+            </ListItemIcon> */}
             <ListItemText primary={text} />
           </ListItem>
         ))}
@@ -74,9 +108,11 @@ function Dashboard(props) {
             edge="start"
             onClick={handleDrawerToggle}
             sx={{ mr: 2, display: { sm: "none" } }}
-          ></IconButton>
+          >
+            {/* <MenuIcon /> */}
+          </IconButton>
           <Typography variant="h6" noWrap component="div">
-            Welcome to Dashboard
+            Dashboard
           </Typography>
         </Toolbar>
       </AppBar>
@@ -127,7 +163,32 @@ function Dashboard(props) {
         }}
       >
         <Toolbar />
-        <Typography paragraph>Content Here</Typography>
+        <Switch>
+          <Route exact path={path}>
+            <Sidebar></Sidebar>
+          </Route>
+          <Route path={`${path}/postReview`}>
+            <PostReviews></PostReviews>
+          </Route>
+          <Route path={`${path}/myOrders`}>
+            <MyOrders></MyOrders>
+          </Route>
+          <AdminRoute path={`${path}/makeAdmin`}>
+            <MakeAdmin></MakeAdmin>
+          </AdminRoute>
+          <AdminRoute path={`${path}/addNewProducts`}>
+            <AddNewProducts></AddNewProducts>
+          </AdminRoute>
+          <AdminRoute path={`${path}/manageOrders`}>
+            <ManageProducts></ManageProducts>
+          </AdminRoute>
+          <AdminRoute path={`${path}/manageAllOrders`}>
+            <ManageAllOrders></ManageAllOrders>
+          </AdminRoute>
+          {/* <AdminRoute path={`${path}/addDoctor`}>
+            <AddDoctor></AddDoctor>
+          </AdminRoute> */}
+        </Switch>
       </Box>
     </Box>
   );

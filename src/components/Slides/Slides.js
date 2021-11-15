@@ -15,33 +15,31 @@ const Slides = () => {
         <Carousel.Item interval={1000}>
           <img className="d-block w-100 " src={banner6} alt="First slide" />
           <Carousel.Caption>
-            <h3 className="text-8xl mb-96 opacity-70">Summer Vacation</h3>
+            <h3 className="text-8xl mb-96 opacity-70">BMW RX5</h3>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item interval={1000}>
           <img className="d-block w-100" src={banner2} alt="Second slide" />
           <Carousel.Caption>
-            <h3 className="text-8xl mb-96 opacity-70">Autumn Vacation</h3>
+            <h3 className="text-8xl mb-96 opacity-70">BMW X9</h3>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
           <img className="d-block w-100 " src={banner3} alt="Third slide" />
           <Carousel.Caption>
-            <h3 className="text-8xl mb-96 opacity-70">Winter Vacation</h3>
+            <h3 className="text-8xl mb-96 opacity-70">BMW AX8</h3>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
           <img className="d-block w-100 " src={banner4} alt="Third slide" />
           <Carousel.Caption>
-            <h3 className="text-8xl mb-96 opacity-70">
-              Explore Beautiful France Vacation
-            </h3>
+            <h3 className="text-8xl mb-96 opacity-70">BMW V8</h3>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
           <img className="d-block w-100 " src={banner5} alt="Third slide" />
           <Carousel.Caption>
-            <h3 className="text-8xl mb-96 opacity-70">Colorado Explore </h3>
+            <h3 className="text-8xl mb-96 opacity-70">BMW X8 </h3>
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>

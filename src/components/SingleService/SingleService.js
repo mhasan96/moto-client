@@ -5,6 +5,18 @@ import { useForm } from "react-hook-form";
 import "./SingleService.css";
 import useAuth from "../Hooks/useAuth";
 
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
+
 const SingleService = () => {
   const {
     register,
@@ -15,7 +27,7 @@ const SingleService = () => {
   const { user } = useAuth();
   const onSubmit = (data) => {
     console.log(data);
-    fetch("http://localhost:5000/orders", {
+    fetch("http://localhost:5000/order", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -26,13 +38,12 @@ const SingleService = () => {
       .then((result) => {
         if (result.insertedId) {
           alert("Order processed Successfully");
-
           reset();
         }
       });
   };
   let { id } = useParams();
-
+  const [bookingInfo, setBookingInfo] = useState("");
   const [serviceDetails, setServiceDetails] = useState({});
 
   //loading Data
@@ -41,6 +52,15 @@ const SingleService = () => {
       .then((res) => res.json())
       .then((data) => setServiceDetails(data));
   }, []);
+  const handleOnBlur = (e) => {
+    const field = e.target.name;
+    const value = e.target.value;
+    const newInfo = { ...bookingInfo };
+    // e.preventDefault();
+    newInfo[field] = value;
+    console.log(newInfo);
+    setBookingInfo(newInfo);
+  };
 
   return (
     <div>
@@ -70,14 +90,14 @@ const SingleService = () => {
         <div className="add-service mt-16 ">
           <form className="shipping-form" onSubmit={handleSubmit(onSubmit)}>
             <input
-              defaultValue={serviceDetails._id}
-              {...register("id")}
-              disabled
+              defaultValue={user.displayName}
+              onBlur={handleOnBlur}
+              {...register("name")}
             />
-            <input defaultValue={user.displayName} {...register("name")} />
 
             <input
               defaultValue={user.email}
+              onBlur={handleOnBlur}
               {...register("email", { required: true })}
             />
             {errors.email && (
@@ -86,16 +106,33 @@ const SingleService = () => {
             <input
               placeholder="Address"
               defaultValue=""
+              onBlur={handleOnBlur}
               {...register("address")}
             />
-            <input placeholder="City" defaultValue="" {...register("city")} />
+            <input
+              defaultValue={"Pending"}
+              onBlur={handleOnBlur}
+              {...register("status")}
+            />
+            <input
+              defaultValue={serviceDetails.Name}
+              onBlur={handleOnBlur}
+              {...register("Cars_Name")}
+            />
+            <input
+              placeholder="City"
+              onBlur={handleOnBlur}
+              defaultValue=""
+              {...register("city")}
+            />
             <input
               placeholder="phone number"
               defaultValue=""
+              onBlur={handleOnBlur}
               {...register("phone")}
             />
 
-            <input type="submit" />
+            <input defaultValue={"Pending"} type="submit" />
           </form>
         </div>
       </div>

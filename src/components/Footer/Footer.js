@@ -38,14 +38,14 @@ const Footer = () => {
           <div className="row mt-3">
             <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
               <h6 className="text-uppercase fw-bold mb-4">
-                <i className="fas fa-gem me-3"></i> Travel Guy
+                <i className="fas fa-gem me-3"></i> Moto WOrld
               </h6>
               <p>
-                It’s difficult to put into words just how transformational
-                travel can be. Thankfully, artists, authors, philosophers, and
-                world travelers have captured that essence in inspirational
-                travel quotes that remind us of our past journeys and serve as
-                fuel for future trips.
+                Bayerische Motoren Werke AG, commonly known as Bavarian Motor
+                Works, BMW or BMW AG, is a German automobile, motorcycle and
+                engine manufacturing company founded in 1916. ... It also owns
+                and produces Mini cars, and is the parent company of Rolls-Royce
+                Motor Cars. BMW produces motorcycles under BMW Motorrad.
               </p>
             </div>
 
@@ -77,12 +77,12 @@ const Footer = () => {
               </p>
               <p>
                 <NavLink to="#!" className="text-reset">
-                  Appointment
+                  Orders
                 </NavLink>
               </p>
               <p>
                 <NavLink to="#!" className="text-reset">
-                  TravelPlace
+                  Best Cars
                 </NavLink>
               </p>
               <p>
@@ -98,7 +98,7 @@ const Footer = () => {
               </p>
               <p>
                 <i className="fas fa-envelope me-3"></i>
-                info@travelGuy.com
+                info@carmoto.com
               </p>
               <p>
                 <i className="fas fa-phone me-3"></i> +880150000000

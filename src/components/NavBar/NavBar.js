@@ -5,7 +5,7 @@ import { HashLink } from "react-router-hash-link";
 import useAuth from "../Hooks/useAuth";
 
 const NavBar = () => {
-  const { user, logOut } = useAuth();
+  const { user, logout } = useAuth();
 
   const [changeHeader, setChangeHeader] = useState(false);
   //header change function
@@ -31,7 +31,7 @@ const NavBar = () => {
         <Container className="flex justify-between">
           <div>
             <Navbar.Brand className="text-black font-bold " href="/home">
-              Travel Guy
+              Moto World
             </Navbar.Brand>
           </div>
           <div>
@@ -51,13 +51,7 @@ const NavBar = () => {
                 <Nav.Link className="text-black " as={HashLink} to="/about">
                   About
                 </Nav.Link>
-                {user.email ? (
-                  <Nav.Link className="text-black " as={HashLink} to="/orders">
-                    Orders
-                  </Nav.Link>
-                ) : (
-                  <Nav.Link></Nav.Link>
-                )}
+
                 {user.email ? (
                   <Nav.Link className="text-black " as={HashLink} to="/explore">
                     Explores
@@ -76,41 +70,19 @@ const NavBar = () => {
                 ) : (
                   <Nav.Link></Nav.Link>
                 )}
-                {user.email ? (
-                  <Nav.Link
-                    className="text-black "
-                    as={HashLink}
-                    to="/manageServices"
-                  >
-                    Manage Services
-                  </Nav.Link>
-                ) : (
-                  <Nav.Link></Nav.Link>
-                )}
 
-                {user.email ? (
-                  <Nav.Link
-                    className="text-black "
-                    as={HashLink}
-                    to="/addservice"
-                  >
-                    Add New Service
-                  </Nav.Link>
-                ) : (
-                  <Nav.Link></Nav.Link>
-                )}
-                {user.email ? (
-                  <Nav.Link className="text-black " onClick={logOut}>
+                {user?.email ? (
+                  <Nav.Link className="text-black " onClick={logout}>
                     Logout
                   </Nav.Link>
                 ) : (
                   <Nav.Link
                     className="text-black "
                     as={HashLink}
-                    to="/signup"
-                    onClick={logOut}
+                    to="/login"
+                    // onClick={logOut}
                   >
-                    Signup
+                    Login
                   </Nav.Link>
                 )}
                 <Navbar.Text className="text-black underline">

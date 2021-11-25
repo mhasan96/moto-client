@@ -8,7 +8,7 @@ const Explors = () => {
   const [exploreServices, setExploreServices] = useState([]);
 
   useEffect(() => {
-    fetch("https://dry-thicket-62738.herokuapp.com/services")
+    fetch("https://dry-thicket-62739.herokuapp.com/services")
       .then((res) => res.json())
       .then((data) => setExploreServices(data));
   }, []);

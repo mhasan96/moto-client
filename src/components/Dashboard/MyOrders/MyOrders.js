@@ -8,14 +8,19 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Button } from "@mui/material";
+import { Nav } from "react-bootstrap";
+import { Route, Switch, useRouteMatch } from "react-router";
+import Pay from "../Pay/Pay";
+import { Link } from "react-router-dom";
 
 const MyOrders = () => {
   const { user } = useAuth();
+  // let { path, url } = useRouteMatch();
   //   const [services, setServices] = useState([]);
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    const url = `https://dry-thicket-62738.herokuapp.com/order?email=${user.email}`;
+    const url = `https://dry-thicket-62739.herokuapp.com/order?email=${user.email}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => setOrders(data));
@@ -23,7 +28,7 @@ const MyOrders = () => {
   const handleDelete = (id) => {
     const proceed = window.confirm("Are you sure? You want to Delete?");
     if (proceed) {
-      const url = `https://dry-thicket-62738.herokuapp.com/order/${id}`;
+      const url = `https://dry-thicket-62739.herokuapp.com/order/${id}`;
       fetch(url, {
         method: "DELETE",
       })
@@ -72,6 +77,11 @@ const MyOrders = () => {
                   <Button variant="outlined" color="error">
                     {row.status}
                   </Button>
+                </TableCell>
+                <TableCell className="text-red-500" align="right">
+                  <Link to="/dashboard/pay">
+                    <Button color="inherit">Pay</Button>
+                  </Link>
                 </TableCell>
                 <TableCell className="text-red-500" align="right">
                   {orders.slice(0, 1).map((service) => (

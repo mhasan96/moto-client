@@ -5,7 +5,7 @@ const ManageOrders = () => {
   const [services, setServices] = useState([]);
 
   useEffect(() => {
-    fetch("https://dry-thicket-62738.herokuapp.com/services")
+    fetch("https://dry-thicket-62739.herokuapp.com/services")
       .then((res) => res.json())
       .then((data) => setServices(data));
   }, []);
@@ -13,7 +13,7 @@ const ManageOrders = () => {
   const handleDelete = (id) => {
     const proceed = window.confirm("Are you sure? You want to Delete?");
     if (proceed) {
-      const url = `https://dry-thicket-62738.herokuapp.com/services/${id}`;
+      const url = `https://dry-thicket-62739.herokuapp.com/services/${id}`;
       fetch(url, {
         method: "DELETE",
       })

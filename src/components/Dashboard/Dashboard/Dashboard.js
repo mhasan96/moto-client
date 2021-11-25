@@ -24,6 +24,7 @@ import ManageProducts from "../ManageProducts/ManageProducts";
 import PostReviews from "../PostReviews/PostReviews";
 import MyOrders from "../MyOrders/MyOrders";
 import ManageAllOrders from "../ManageAllOrders/ManageAllOrders";
+import Pay from "../Pay/Pay";
 
 const drawerWidth = 200;
 
@@ -41,9 +42,6 @@ function Dashboard(props) {
     <div>
       <Toolbar />
       <Divider />
-      <Link to="/appointment">
-        <Button color="inherit">Appointment</Button>
-      </Link>
       <Link to={`${url}`}>
         <Button color="inherit">Dashboard</Button>
       </Link>
@@ -52,6 +50,10 @@ function Dashboard(props) {
       </Link>
       <Link to={`${url}/myOrders`}>
         <Button color="inherit">My Orders</Button>
+      </Link>
+      <br />
+      <Link to={`${url}/pay`}>
+        <Button color="inherit">Pay</Button>
       </Link>
       <br />
       {user.email && (
@@ -75,16 +77,6 @@ function Dashboard(props) {
           </Link>
         </Box>
       )}
-      <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-          <ListItem button key={text}>
-            {/* <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon> */}
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
     </div>
   );
 
@@ -172,6 +164,9 @@ function Dashboard(props) {
           </Route>
           <Route path={`${path}/myOrders`}>
             <MyOrders></MyOrders>
+          </Route>
+          <Route path={`${path}/pay`}>
+            <Pay></Pay>
           </Route>
           <AdminRoute path={`${path}/makeAdmin`}>
             <MakeAdmin></MakeAdmin>

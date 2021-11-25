@@ -52,13 +52,10 @@ const NavBar = () => {
                   About
                 </Nav.Link>
 
-                {user.email ? (
-                  <Nav.Link className="text-black " as={HashLink} to="/explore">
-                    Explores
-                  </Nav.Link>
-                ) : (
-                  <Nav.Link></Nav.Link>
-                )}
+                <Nav.Link className="text-black " as={HashLink} to="/explore">
+                  Explores
+                </Nav.Link>
+
                 {user.email ? (
                   <Nav.Link
                     className="text-black "

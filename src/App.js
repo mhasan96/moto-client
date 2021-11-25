@@ -31,9 +31,9 @@ function App() {
             <PrivateRoute path="/dashboard">
               <Dashboard></Dashboard>
             </PrivateRoute>
-            <PrivateRoute path="/explore">
+            <Route path="/explore">
               <Explors></Explors>
-            </PrivateRoute>
+            </Route>
             <Route path="/register">
               <Register></Register>
             </Route>

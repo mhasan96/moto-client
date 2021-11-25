@@ -7,18 +7,50 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import { useForm, Controller } from "react-hook-form";
+
 import { Button } from "@mui/material";
 
 const ManageAllOrders = () => {
   const { user } = useAuth();
   const [orders, setOrders] = useState([]);
+  const [status, setStatus] = useState("");
+  const { control } = useForm();
+
+  const handleStatus = (e) => {
+    setStatus(e.target.value);
+  };
+  // const handleUpdate = (id) => {
+  //   fetch(`http:localhost:5000/order/${id}`)
+  // };
+  // console.log(status);
 
   useEffect(() => {
-    const url = "https://dry-thicket-62738.herokuapp.com/order";
+    const url = "https://dry-thicket-62739.herokuapp.com/order";
     fetch(url)
       .then((res) => res.json())
       .then((data) => setOrders(data));
   }, []);
+  const handleShipping = (id) => {
+    const proceed = window.confirm("Are you sure? You want to Update?");
+    if (proceed) {
+      const url = `https://dry-thicket-62739.herokuapp.com/updateStatus/${id}`;
+      fetch(url, {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({ status }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          if (data.modifiedCount) {
+            alert("Successfully Shipped the Product ");
+          }
+        });
+    }
+  };
   return (
     <div>
       <h2>Total Orders: {orders.length}</h2>
@@ -49,10 +81,22 @@ const ManageAllOrders = () => {
                 <TableCell align="right">{row.city}</TableCell>
                 <TableCell align="right">{row.phone}</TableCell>
                 <TableCell className="text-red-500" align="right">
-                  {row.status}
+                  <input
+                    onChange={handleStatus}
+                    type="text"
+                    defaultValue={row.status}
+                  />
+                  <Controller
+                    render={({ field }) => <input {...field} />}
+                    name="firstName"
+                    control={control}
+                    defaultValue=""
+                  />
                 </TableCell>
                 <TableCell align="right">
-                  <Button>Shipping</Button>
+                  <Button onClick={() => handleShipping(row._id)}>
+                    Update
+                  </Button>
                 </TableCell>
               </TableRow>
             ))}

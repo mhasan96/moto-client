@@ -8,7 +8,7 @@ const PostReviews = () => {
   const onSubmit = (data) => {
     console.log(data);
     axios
-      .post("https://dry-thicket-62738.herokuapp.com/reviews", data)
+      .post("https://dry-thicket-62739.herokuapp.com/reviews", data)
       .then((res) => {
         if (res.data.insertedId) {
           alert("Thank You for your Feedback");

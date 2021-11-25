@@ -8,7 +8,7 @@ const AddNewProducts = () => {
   const onSubmit = (data) => {
     console.log(data);
     axios
-      .post("https://dry-thicket-62738.herokuapp.com/services", data)
+      .post("https://dry-thicket-62739.herokuapp.com/services", data)
       .then((res) => {
         if (res.data.insertedId) {
           alert("New Services Added Successfully");
